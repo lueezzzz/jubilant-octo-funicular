@@ -1,33 +1,41 @@
-# dependencies
-node_modules/
-.pnpm-store/
-.pnp
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/versions
+# Global Dependencies & Env
 
-**/coverage/
+node_modules/
+.env
+.env.*
+
+
+# Logs
+
+logs/
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.pnpm-debug.log*
+pnpm-debug.log*
+lerna-debug.log*
 
-frontend/.next/
-frontend/out/
-frontend/build/
-frontend/next-env.d.ts
 
-backend/dist/
-backend/build/
-backend/prisma/*.db
-backend/prisma/*.db-journal
+# Backend Specific
 
-**/.env*
-.vercel
-*.pem
+backend/src/generated/
 
+
+# Frontend Specific
+
+dist/
+dist-ssr/
+*.local
+
+
+# OS & Editor Files
+
+.vscode/*
+!.vscode/extensions.json
+.idea/
 .DS_Store
-*.tsbuildinfo
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
