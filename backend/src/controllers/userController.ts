@@ -27,21 +27,35 @@ export class UserController {
     }
   }
 
+  static async login(req: Request, res: Response): Promise<void> {
+    try {
+      const { email, password } = req.body
+
+      const user =  await UserService.login(email, password);
+  
+      res.status(201).json({
+        message: "Logged in sucessfully!",
+        user: user
+      });
+    } catch (error) {
+      res.status(400).json({
+        error: error instanceof Error ? error.message : "Failed to login",
+      });
+    }
+  }
+
   static async getUsers(req: Request, res: Response): Promise<void> {
     try {
-
       const users = await UserService.getUsers();
 
       res.status(201).json({
         message: "Here are the users:",
         users: users,
       });
-
-      
     } catch (error) {
       res.status(400).json({
-        error: error instanceof Error ? error.message : "Failed getting users"
-      })
+        error: error instanceof Error ? error.message : "Failed getting users",
+      });
     }
   }
 }

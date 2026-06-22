@@ -25,18 +25,22 @@ export class UserService {
     return newUser;
   }
 
-  static async loginUser(
+  static async login(
     email: string,
     password: string,
   ) {
     
-    // check database for email
+    const user = await prisma.user.findUnique({
+      where: { email: email },
+    }); 
+
+    if (!user || user.password != password){
+      throw new Error("Invalid email or password")
+    }
+
+    const { password: _, ...userWithoutPassword } = user;
     
-
-    // if password for that specific email is the same as password in the email in the database, log-in user
-
-    
-
+    return userWithoutPassword
 
   }
 
