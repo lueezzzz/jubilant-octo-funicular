@@ -37,5 +37,8 @@ jobs:
         env:
           DATABASE_URL: "postgresql://fake_user:fake_password@localhost:5432/fake_db"
 
+      - name: Generate Prisma Client
+        run: npx prisma generate
+
       - name: TypeScript Compile Check
         run: npm run build
